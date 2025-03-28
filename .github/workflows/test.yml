@@ -1,0 +1,27 @@
+name: CI
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+  issues:
+    types: [opened]
+
+jobs:
+  build:
+    if: (github.event_name == 'push') || (github.event_name == 'workflow_dispatch') || (github.event_name == 'issues' && (contains(github.event.issue.title, 'fuc!') || contains(github.event.issue.body, 'fuc!')))
+    runs-on: ubuntu-latest
+    environment: temp
+    env:
+      GIT_USERNAME: ${{ vars.GIT_USERNAME }}
+      GIT_EMAIL: ${{ vars.GIT_EMAIL }}
+      WORKFLOW_TOKEN: ${{ vars.WORKFLOW_TOKEN }}
+      ENABLE_CACHE: ${{ vars.ENABLE_CACHE }}
+      ENABLE_SSH: ${{ vars.ENABLE_SSH }}
+    permissions:
+      contents: write
+    
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run start.sh
+        run: bash start.sh
