@@ -15,7 +15,7 @@ jobs:
     env:
       GIT_USERNAME: ${{ vars.GIT_USERNAME }}
       GIT_EMAIL: ${{ vars.GIT_EMAIL }}
-      WORKFLOW_TOKEN: ${{ vars.WORKFLOW_TOKEN }}
+      GIT_ACCESS_TOKEN: ${{ vars.GIT_ACCESS_TOKEN }}
       ENABLE_CACHE: ${{ vars.ENABLE_CACHE }}
       ENABLE_SSH: ${{ vars.ENABLE_SSH }}
     permissions:
